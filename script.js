@@ -180,9 +180,14 @@ document.addEventListener("keydown", (e) => {
     togglePageFullscreen();
   }
 });
+document.addEventListener("keydown", (e) => {
+  // Shift + C
+  if (e.shiftKey && e.key.toLowerCase() === "c") {
+    // avoid firing while typing in inputs
+    const tag = document.activeElement.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA") return;
 
-window.myYT = {
-  copyTime: copyCurrentTime,
-  jumpBox: showJumpBox, // if you add one
-  toggleFS: togglePageFullscreen
-};
+    e.preventDefault();
+    copyCurrentTime();
+  }
+});
