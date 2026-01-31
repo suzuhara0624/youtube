@@ -4,13 +4,165 @@
   <meta charset="UTF-8" />
   <title>YouTube Controller</title>
   <style>
+
+
+.copy-success {
+  background: rgba(0, 0, 0, 0.4) !important;
+  color: white;
+}
+
+.version-tag {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px 8px;
+  border-radius: 6px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
+ background: #888;   /* gray */
     }
-    #player {
-      margin-bottom: 20px;
+
+
+#player-container {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  background: black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#player {
+  width: 100%;
+  height: 100%;
+}
+#player iframe {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+.controls {
+width: 100px;
+  height: 200px; 
+ position: absolute;   /* 👈 REQUIRED */
+ top: 500px;            /* move down */
+  right: 2px;           /* move right */     
+}
+
+.controls button {
+  font-size: 30px;
+  background: #444;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.controls button:active {
+  transform: scale(0.96);
+}
+.controls input {
+  background: #444;      /* dark gray */
+  color: white;          /* text color */
+  font-size: 22px;       /* slightly smaller than buttons */
+  
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+    .side-controls {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
     }
+
+.side-controls.left {
+  left: 8px;
+  right: auto;
+
+
+}
+
+.side-controls.right {
+  right: 8px;
+  left: auto;
+}
+
+
+    .side-controls button {
+      width: 20px;
+      height: 25px;
+      font-size: 24px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.0);
+      color: white;
+      opacity: 0.75;
+    }
+
+.side-controls.left button {
+  text-align: left;
+  padding-left: 16px;   /* so it’s not glued to the edge */
+}
+.side-controls.right button {
+  text-align: right;
+  padding-right: 16px;
+}
+
+    .side-controls button:active {
+      opacity: 1;
+      transform: scale(0.95);
+    }
+
+
+/*/////new add////*/
+
+  .fullscr-controls {
+      position: absolute;
+bottom: 8px;
+right: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+    }
+.fullscr-controls button {
+      width: 48px;
+      height: 48px;
+      font-size: 24px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      opacity: 0.75;
+    }
+
+    .fullscr-controls button:active {
+      opacity: 1;
+      transform: scale(0.95);
+    }
+/*////////*/
+
     input {
       width: 300px;
       margin-right: 10px;
@@ -19,23 +171,52 @@
 </head>
 <body>
 
-  <div id="player"></div>
+  <!-- PLAYER AREA  -->
+  <div id="player-container">
+    <div id="player"></div>
 
-  <div>
-    <div>
-      <input id="timeInput" placeholder="HH:mm:ss (e.g. 01:23:45)" />
-      <button onclick="jumpTime()">Jump Time</button>
-    </div>
+    <!-- LEFT SIDE -->
+<div class="side-controls left">
+  <button onclick="seekBy(-5)">&lt;</button>
+</div>
+
+<!-- RIGHT SIDE -->
+<div class="side-controls right">
+  <button onclick="seekBy(5)">&gt;</button>
+  
+</div>
+
+   <!-- fullscr SIDE -->
+<div class="fullscr-controls">
+  <button onclick="togglePageFullscreen()">⛶</button>
+</div>
+
+  </div>
+
+  <!-- CONTROLS BELOW VIDEO -->
+  <div class="controls">
+
+<button id="copyBtn" onclick="copyCurrentTime()">Copy current time</button>
+
+<br /> <br />
+
+<form onsubmit="jumpTime(); return false;">
+  <input id="timeInput" placeholder="HH:mm:ss (e.g. 01:23:45)" />
+  <button type="submit">Jump Time</button>
+</form>
     <br />
-    <div>
-      <input id="urlInput" placeholder="YouTube URL or ID" />
-      <button onclick="changeVideo()">Change Video</button>
-    </div>
+
+    <form onsubmit="changeVideo(); return false;">
+  <input id="urlInput" placeholder="YouTube URL or ID" />
+  <button type="submit">Change Video</button>
+</form>
+
   </div>
 
   <!-- YouTube IFrame API -->
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="script.js"></script>
+<div class="version-tag">ver 1.000005</div>
 
 </body>
 </html>
