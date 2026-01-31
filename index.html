@@ -57,12 +57,12 @@
 width: 100px;
   height: 200px; 
  position: absolute;   /* 👈 REQUIRED */
- top: 500px;            /* move down */
-  right: 2px;           /* move right */     
+ top: 275px;            /* move down */
+  right: 50px;           /* move right */     
 }
 
 .controls button {
-  font-size: 30px;
+  font-size: 15px;
   background: #444;
   color: white;
 
@@ -79,7 +79,9 @@ width: 100px;
   background: #444;      /* dark gray */
   color: white;          /* text color */
   font-size: 22px;       /* slightly smaller than buttons */
-  
+  width: 100px;
+height: 130px;
+
   border: none;
   border-radius: 6px;
   padding: 6px 10px;
@@ -88,34 +90,36 @@ width: 100px;
     .side-controls {
       position: absolute;
       right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 10px;
+   
       display: flex;
       flex-direction: column;
-      gap: 0px;
+      gap: 60px;
     }
 
 .side-controls.left {
   left: 8px;
   right: auto;
-
+  margin-top: 45px;
 
 }
 
 .side-controls.right {
   right: 8px;
   left: auto;
+  margin-top: -111px;
+
 }
 
 
     .side-controls button {
-      width: 20px;
-      height: 25px;
+      width: 1100px;
+      height: 100px;
       font-size: 24px;
       font-weight: bold;
       border: none;
-      border-radius: 8px;
-      background: rgba(0, 0, 0, 0.0);
+      border-radius: 0px;
+      background: rgba(0, 0, 0, 0.9);
       color: white;
       opacity: 0.75;
     }
@@ -177,18 +181,22 @@ right: 8px;
 
     <!-- LEFT SIDE -->
 <div class="side-controls left">
-  <button onclick="seekBy(-5)">&lt;</button>
+
+
+
 </div>
 
 <!-- RIGHT SIDE -->
 <div class="side-controls right">
-  <button onclick="seekBy(5)">&gt;</button>
+
+
+
   
 </div>
 
    <!-- fullscr SIDE -->
 <div class="fullscr-controls">
-  <button onclick="togglePageFullscreen()">⛶</button>
+
 </div>
 
   </div>

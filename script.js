@@ -168,21 +168,31 @@ document.addEventListener(
   true // 👈 CAPTURE PHASE (important)
 );
 
-document.addEventListener("fullscreenchange", () => {
-  // If iframe tries to fullscreen, cancel it
-  if (document.fullscreenElement?.tagName === "IFRAME") {
-    document.exitFullscreen();
+//---toggle play (pause unpause)---
+function togglePlay() {
+  if (!player) return;
+
+  const state = player.getPlayerState();
+
+  // 1 = playing, 2 = paused
+  if (state === YT.PlayerState.PLAYING) {
+    player.pauseVideo();
+  } else {
+    player.playVideo();
   }
-});
+}
+
+
 document.addEventListener("keydown", (e) => {
-  if (e.key === "XXXXX" && !e.ctrlKey && !e.altKey) {
+  if (e.key === "f" && !e.ctrlKey && !e.altKey) {
     e.preventDefault();
     togglePageFullscreen();
   }
 });
+
 document.addEventListener("keydown", (e) => {
   // Shift + C
-  if (e.shiftKey && e.key.toLowerCase() === "c") {
+  if (e.shiftKey && e.key.toLowerCase() === "v") {
     // avoid firing while typing in inputs
     const tag = document.activeElement.tagName;
     if (tag === "INPUT" || tag === "TEXTAREA") return;
