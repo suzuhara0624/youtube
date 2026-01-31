@@ -6,17 +6,19 @@ function getQueryParam(name) {
 
 
 // Called automatically by YouTube API
-function onYouTubeIframeAPIReady() {
-  const videoId = getQueryParam('v') || 'nQ3Ohw4Oc-4';
-  const timeParam = getQueryParam('t');
+const DEFAULT_VIDEO_ID = "zeGYRwOJOho";
 
+function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
-    height: '450',
-    width: '800',
-    videoId: videoId,
+    height: '428',
+    width: '761',
+    videoId: DEFAULT_VIDEO_ID,
     playerVars: {
       playsinline: 1
-    },
+    }
+  });
+}
+,
     events: {
       onReady: () => {
         if (timeParam) {
@@ -80,5 +82,6 @@ function changeVideo() {
   // ✅ update URL in address bar (no reload)
   history.replaceState(null, '', `?v=${videoId}`);
 }
+
 
 
