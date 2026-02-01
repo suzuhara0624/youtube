@@ -209,13 +209,23 @@ right: 8px;
 <br /> <br />
 
 <form onsubmit="jumpTime(); return false;">
-  <input id="timeInput" placeholder="HH:mm:ss (e.g. 01:23:45)" />
+  <input id="timeInput" placeholder="00:00:00" 
+      autocomplete="off"
+  autocorrect="off"
+  autocapitalize="off"
+  spellcheck="false"
+    />
   <button type="submit">Jump Time</button>
 </form>
     <br />
 
     <form onsubmit="changeVideo(); return false;">
-  <input id="urlInput" placeholder="YouTube URL or ID" />
+  <input id="urlInput" placeholder="YouTube URL or ID" 
+      autocomplete="off"
+  autocorrect="off"
+  autocapitalize="off"
+  spellcheck="false"
+    />
   <button type="submit">Change Video</button>
 </form>
 
@@ -228,3 +238,4 @@ right: 8px;
 
 </body>
 </html>
+
