@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
-<!-- this is version 1.005pc -->
-
+<!-- this is version 1.006pc -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -66,7 +65,7 @@ width: 99px;
 
 .controls-facebook {
 width: 200px;
-  height: 800px; 
+  height: 400px; 
  position: absolute;   /* 👈 REQUIRED */
  top: 375px;            /* move down */
 right: 5px;           /* move right */ 
@@ -74,14 +73,14 @@ background: #252121;
   padding: 3px;
     
   border-radius: 4px;
-
+ overflow: hidden; 
 
 }
 .fb-scale {
   transform: scale(0.65);
   transform-origin: top left;
   width: 320px;
-  filter: invert(1) hue-rotate(180deg);
+
 
 }
 
@@ -198,23 +197,21 @@ right: 8px;
     }
 
 /*facebook css*/
-.fb-box {
-  width: 220px;
-  height: 400px;
-  margin-top: 12px;
-  border: 1px solid #ccc;
-  background: #000000;
+.comment-scroll  {
+  height: 100%;
+  overflow-y: auto;
+  zoom: 0.7; 
+
 }
 
-
+.comment-scroll::-webkit-scrollbar {
+  width: 0px;
+}
   </style>
 </head>
 <body>
 
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous"
-  src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0">
-</script>
+
 
   <!-- PLAYER AREA  -->
   <div id="player-container">
@@ -249,15 +246,36 @@ right: 8px;
 
  <!-- facebook-->
 <div class="controls-facebook">
-  <div class="fb-scale">
-    <div
-      class="fb-comments"
-  data-href="https://suzuhara0624.github.io/youtube/comments.html"
-  data-width="320"
-  data-numposts="5"
-data-colorscheme="dark"
-      data-order-by="reverse_time"
->
+
+     <div class="comment-scroll">
+   
+	
+	<script src="https://utteranc.es/client.js"
+        repo="suzuhara0624/youtube"
+        issue-number="2"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+	</script>
+
+<script>
+window.addEventListener("load", function () {
+  const tryScroll = setInterval(() => {
+    const scrollBox = document.querySelector(".comment-scroll");
+    const iframe = document.querySelector(".utterances-frame");
+
+    if (scrollBox && iframe) {
+      setTimeout(() => {
+        scrollBox.scrollTop = scrollBox.scrollHeight;
+      }, 1500);
+
+      clearInterval(tryScroll);
+    }
+  }, 100);
+});
+</script>
+
+		
     </div>
   </div>
 </div>
@@ -301,8 +319,7 @@ data-colorscheme="dark"
   <!-- YouTube IFrame API -->
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="script.js"></script>
-<div class="version-tag">ver 1.005pc</div>
+<div class="version-tag">ver 1.006pc</div>
 
 </body>
 </html>
-

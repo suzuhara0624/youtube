@@ -1,4 +1,4 @@
-// ----- this is version 1.005pc -----
+// ----- this is version 1.006pc -----
 
 let player;
 
