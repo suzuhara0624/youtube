@@ -25,8 +25,8 @@ function onYouTubeIframeAPIReady() {
   },
   events: {
     onReady: () =>{
-    // force volume 100%
-    player.setVolume(100);
+    // force volume 50%
+    player.setVolume(50);
 
       if (timeParam) {
         const seconds = parseTime(timeParam);
@@ -206,3 +206,4 @@ document.addEventListener("keydown", (e) => {
     copyCurrentTime();
   }
 });
+
