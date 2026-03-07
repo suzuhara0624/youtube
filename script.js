@@ -19,10 +19,14 @@ function onYouTubeIframeAPIReady() {
     playerVars: {
       playsinline: 1
     ,
-    mute: 1   // 👈 THIS is the key for mobile
+    loop: 1,
+    playlist: videoId
+
   },
   events: {
     onReady: () =>{
+    // force volume 100%
+    player.setVolume(100);
 
       if (timeParam) {
         const seconds = parseTime(timeParam);
@@ -75,8 +79,7 @@ function changeVideo() {
 
   player.loadVideoById(videoId);
 
-  // ✅ force mute again
-  player.mute();
+
 
   // update URL without reload
   history.replaceState(null, '', `?v=${videoId}`);
