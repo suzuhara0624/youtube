@@ -25,8 +25,8 @@ function onYouTubeIframeAPIReady() {
   },
   events: {
     onReady: () =>{
-    // force volume 50%
-    player.setVolume(50);
+    // force volume 100%
+    player.setVolume(100);
 
       if (timeParam) {
         const seconds = parseTime(timeParam);
