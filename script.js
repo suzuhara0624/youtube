@@ -1,4 +1,4 @@
-// ----- this is version 1.006pc -----
+// ----- this is version 1.007pc -----
 
 let player;
 
@@ -11,33 +11,39 @@ function getQueryParam(name) {
 
 // ================= YouTube API =================
 function onYouTubeIframeAPIReady() {
-  const videoId = getQueryParam("v") || DEFAULT_VIDEO_ID;
-  const timeParam = getQueryParam("t");
+  const init = () => {
+    const videoId = getQueryParam("v") || DEFAULT_VIDEO_ID;
+    const timeParam = getQueryParam("t");
 
- player = new YT.Player("player", {
-    videoId: videoId,
-    playerVars: {
-      playsinline: 1
-    ,
-    loop: 1,
-    playlist: videoId
+    player = new YT.Player("player", {
+      videoId: videoId,
+      playerVars: {
+        playsinline: 1,
+        loop: 1,
+        playlist: videoId
+      },
+      events: {
+        onReady: () => {
+          // force volume 100%
+          player.setVolume(100);
 
-  },
-  events: {
-    onReady: () =>{
-    // force volume 100%
-    player.setVolume(100);
-
-      if (timeParam) {
-        const seconds = parseTime(timeParam);
-        if (seconds !== null) {
-          player.seekTo(seconds, true);
+          if (timeParam) {
+            const seconds = parseTime(timeParam);
+            if (seconds !== null) {
+              player.seekTo(seconds, true);
+            }
+          }
         }
       }
-    }
-  }
-});
+    });
+  };
 
+  // ✅ wait for full page load (fix random blank issue)
+  if (document.readyState === "complete") {
+    init();
+  } else {
+    window.addEventListener("load", init);
+  }
 }
 
 
@@ -206,4 +212,3 @@ document.addEventListener("keydown", (e) => {
     copyCurrentTime();
   }
 });
-

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- this is version 1.006pc -->
+<!-- this is version 1.007pc -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -317,9 +317,15 @@ window.addEventListener("load", function () {
   </div>
 
   <!-- YouTube IFrame API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  if (!window.YT) {
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(tag);
+  }
+</script>
   <script src="script.js"></script>
-<div class="version-tag">ver 1.006pc</div>
+<div class="version-tag">ver 1.007pc</div>
 
 </body>
 </html>
